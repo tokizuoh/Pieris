@@ -20,6 +20,7 @@ def main():
             # print(file)
             # exit()
 
+# TODO: 命名がおかしい sameであるなら比較対象はどちらも同じ型であるべき？
 def isSameExpand(expand: str, file_path: str) -> bool:
     return expand == file_path[-len(expand):]
 
