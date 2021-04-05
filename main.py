@@ -28,6 +28,8 @@ def main():
             class_names.append(words[1][:-1])
             [inherited_class_names.add(i) for i in extract_inherited_class_names(words)]
 
+    not_inherited_class_names = [class_name for class_name in class_names if class_name not in inherited_class_names]
+
 # TODO: 命名がおかしい sameであるなら比較対象はどちらも同じ型であるべき？
 def is_same_expand(expand: str, file_path: str) -> bool:
     return expand == file_path[-len(expand):]
