@@ -1,4 +1,5 @@
 import os
+import sys
 import pathlib
 
 TARGET_EXPAND = '.swift'
@@ -16,13 +17,16 @@ class ClassFile:
 
 class Color:
 
+    RED    = '\033[31m' 
     YELLOW = '\033[33m'
     RESET  = '\033[0m'
 
 
 def main():
-    # TODO: 動的に
-    path = '/Users/tokizo/prg/sw/Pendula/Pendula'
+    args = sys.argv
+    if len(args) < 2 or not os.path.isdir(args[1]):
+        error_message = "{}ERROR: Please input Project Directory Path{}".format(Color.RED, Color.RESET)
+        exit(error_message)
 
     p = pathlib.Path(path)
     inherited_class_names = set()
