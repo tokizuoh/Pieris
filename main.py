@@ -14,6 +14,11 @@ class ClassFile:
         self.path = path
 
 
+class Color:
+
+    YELLOW = '\033[33m'
+    RESET  = '\033[0m'
+
 def main():
     # TODO: 動的に
     path = '/Users/tokizo/prg/sw/Pendula/Pendula'
@@ -40,6 +45,9 @@ def main():
 
     not_inherited_class_files = [class_name for class_name in class_files if class_name not in inherited_class_names]
 
+    print("{}[Warning] Not inherited but not given final qualifier.{}".format(Color.YELLOW, Color.RESET))
+    for not_inherited_class_file in not_inherited_class_files:
+        print(not_inherited_class_file.path)
 
 def has_expand(expand: str, file_path: str) -> bool:
     return expand == file_path[-len(expand):]
@@ -47,6 +55,7 @@ def has_expand(expand: str, file_path: str) -> bool:
 
 def extract_inherited_class_names(line: str) -> [str]:
     return line[2:-1]
+
 
 
 main()
