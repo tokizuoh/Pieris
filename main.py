@@ -28,6 +28,7 @@ def main():
         error_message = "{}ERROR: Please input Project Directory Path{}".format(Color.RED, Color.RESET)
         exit(error_message)
 
+    path = args[1]
     p = pathlib.Path(path)
     inherited_class_names = set()
     class_files: [ClassFile] = []
