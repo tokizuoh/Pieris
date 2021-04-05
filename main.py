@@ -16,7 +16,7 @@ def main():
     for f in file_paths:
         file_path = str(f)
 
-        if not os.path.isfile(file_path) or not isSameExpand(expand=TARGET_EXPAND, file_path=file_path):
+        if not os.path.isfile(file_path) or not is_same_expand(expand=TARGET_EXPAND, file_path=file_path):
             continue
         
         for line in  open(file_path, 'r'):
@@ -28,9 +28,8 @@ def main():
             class_names.append(words[1][:-1])
             [inherited_class_names.add(i) for i in extract_inherited_class_names(words)]
 
-
 # TODO: 命名がおかしい sameであるなら比較対象はどちらも同じ型であるべき？
-def isSameExpand(expand: str, file_path: str) -> bool:
+def is_same_expand(expand: str, file_path: str) -> bool:
     return expand == file_path[-len(expand):]
 
 def extract_inherited_class_names(line: str) -> [str]:
