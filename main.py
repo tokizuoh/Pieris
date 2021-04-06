@@ -43,12 +43,16 @@ def main():
         for line in  open(file_path, 'r'):
             words = line.split()
 
-            if len(words) == 0 or words[0] != 'class':
+            if len(words) == 0:
                 continue
 
-            class_files.append(ClassFile(name=words[1][:-1], path=file_path))
-            [inherited_class_names.add(i) for i in extract_inherited_class_names(words)]
-
+            if words[0] == 'class':
+                class_files.append(ClassFile(name=words[1][:-1], path=file_path))
+                [inherited_class_names.add(i) for i in extract_inherited_class_names(words)]
+            elif words[0] == 'extension':
+                if words[1][-1] == ':':
+                    [inherited_class_names.add(i) for i in extract_inherited_class_names(words)]
+            
     not_inherited_class_files = [class_name for class_name in class_files if class_name not in inherited_class_names]
 
     print("{}[Warning] Not inherited but not given final qualifier.{}".format(Color.YELLOW, Color.RESET))
